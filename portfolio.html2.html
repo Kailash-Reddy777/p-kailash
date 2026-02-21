@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P.Kailash Reddy | Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Floating Background Animation */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle,rgba(255,255,255,0.08) 10%,transparent 10%);
+    background-size:50px 50px;
+    animation:moveBg 20s linear infinite;
+    z-index:-1;
+}
+@keyframes moveBg{
+    from{transform:translate(0,0);}
+    to{transform:translate(-50px,-50px);}
+}
+
+/* Navbar */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+}
+nav h2{
+    color:#00f2fe;
+}
+nav ul{
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+nav ul li{
+    cursor:pointer;
+    transition:0.3s;
+}
+nav ul li:hover{
+    color:#00f2fe;
+}
+
+/* Hero Section */
+.hero{
+    height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+    animation:slideIn 2s ease forwards;
+}
+.hero h3{
+    font-size:25px;
+    margin:15px 0;
+    color:#00f2fe;
+    animation:fadeIn 3s ease forwards;
+}
+
+@keyframes slideIn{
+    from{transform:translateY(-100px);opacity:0;}
+    to{transform:translateY(0);opacity:1;}
+}
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.btn{
+    padding:10px 25px;
+    border:none;
+    background:#00f2fe;
+    color:black;
+    font-weight:bold;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.4s;
+}
+.btn:hover{
+    background:white;
+}
+
+/* Section Styling */
+section{
+    padding:60px 10%;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:30px;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
+    margin-top:20px;
+    transition:0.5s;
+}
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 20px #00f2fe;
+}
+
+.skills span{
+    display:inline-block;
+    background:#00f2fe;
+    color:black;
+    padding:8px 15px;
+    border-radius:20px;
+    margin:10px;
+    animation:pop 2s infinite alternate;
+}
+@keyframes pop{
+    from{transform:scale(1);}
+    to{transform:scale(1.1);}
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:20px;
+    background:#00000050;
+}
+
+/* Scroll Animation */
+.hidden{
+    opacity:0;
+    transform:translateY(50px);
+    transition:all 1s;
+}
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>Kailash</h2>
+    <ul>
+        <li onclick="scrollToSection('about')">About</li>
+        <li onclick="scrollToSection('education')">Education</li>
+        <li onclick="scrollToSection('skills')">Skills</li>
+        <li onclick="scrollToSection('contact')">Contact</li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <h1>P. Kailash Reddy</h1>
+    <h3>Software Developer</h3>
+    <button class="btn" onclick="scrollToSection('contact')">Hire Me</button>
+</div>
+
+<section id="about" class="hidden">
+    <h2>About Me</h2>
+    <div class="card">
+        <p>I am a B.Tech 1st Year student (CSE) with a CGPA of 8.95. 
+        Passionate about Software Development and continuously learning Data Structures and Algorithms.</p>
+    </div>
+</section>
+
+<section id="education" class="hidden">
+    <h2>Education</h2>
+    <div class="card">
+        <p><strong>B.Tech (CSE)</strong><br>
+        Seshadri Rao Gudlavalleru Engineering College<br>
+        CGPA: 8.95</p>
+        <br>
+        <p><strong>Intermediate</strong><br>
+        Sri Sarada Education Institution</p>
+        <br>
+        <p><strong>10th Class</strong><br>
+        Navodaya High School</p>
+    </div>
+</section>
+
+<section id="skills" class="hidden">
+    <h2>Technical Skills</h2>
+    <div class="card skills">
+        <span>C Language</span>
+        <span>Python</span>
+        <span>C++</span>
+        <span>Learning DSA</span>
+    </div>
+</section>
+
+<section id="contact" class="hidden">
+    <h2>Contact Me</h2>
+    <div class="card">
+        <p><strong>Email:</strong> palreddykailash@gmail.com</p>
+        <p><strong>Phone:</strong> 9347926455</p>
+    </div>
+</section>
+
+<footer>
+    © 2026 P. Kailash Reddy | Software Developer
+</footer>
+
+<script>
+// Smooth Scroll
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+// Scroll Reveal Animation
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+});
+
+document.querySelectorAll(".hidden").forEach(el=>{
+    observer.observe(el);
+});
+</script>
+
+</body>
+</html>
